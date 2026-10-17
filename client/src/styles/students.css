@@ -1,0 +1,254 @@
+/* ============================================================
+   ScholarHub — Students List Page
+   ============================================================ */
+
+/* ── Controls Bar ────────────────────────────────────────────── */
+.students-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.controls-left { flex: 1; min-width: 220px; }
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Search Input ────────────────────────────────────────────── */
+.search-wrapper { position: relative; }
+
+.search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+}
+
+.search-input {
+  padding-left: 40px;
+  min-width: 300px;
+}
+
+/* ── Filter Dropdowns ────────────────────────────────────────── */
+.filter-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: var(--t-normal);
+  min-width: 120px;
+}
+.filter-select:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+.filter-select option { background: #14143a; }
+
+/* ── View Toggle (Grid / List) ───────────────────────────────── */
+.view-toggle {
+  display: flex;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.view-btn {
+  padding: 9px 13px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--t-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn.active {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+}
+
+.view-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Student Count Label ─────────────────────────────────────── */
+.students-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.students-count span { color: var(--cyan); font-weight: 600; }
+
+/* ── Grid Layout ─────────────────────────────────────────────── */
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+/* ── Student Card ────────────────────────────────────────────── */
+.student-card {
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--t-normal);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 212, 255, 0.22);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 212, 255, 0.06);
+}
+
+.student-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.student-card-info { flex: 1; min-width: 0; }
+
+.student-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.student-card-id {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.student-card-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 0;
+}
+
+.student-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.student-card-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.student-card-detail-label { color: var(--text-muted); }
+.student-card-detail-value { color: var(--text-secondary); font-weight: 500; }
+
+.student-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+/* Card action buttons — hidden until hover */
+.student-card-actions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: var(--t-normal);
+}
+.student-card:hover .student-card-actions { opacity: 1; }
+
+.card-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-fast);
+  font-size: 14px;
+  text-decoration: none;
+}
+.card-action-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+.card-action-btn.delete:hover {
+  color: var(--pink);
+  border-color: rgba(236, 72, 153, 0.3);
+  background: var(--pink-dim);
+}
+
+/* ── Table View ──────────────────────────────────────────────── */
+.students-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.students-table td {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.students-table tbody tr:last-child td { border-bottom: none; }
+.students-table tbody tr { transition: var(--t-fast); }
+.students-table tbody tr:hover { background: var(--bg-card-hover); }
+
+.table-student-name { font-weight: 500; }
+.table-id { font-family: monospace; font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; }
+
+.table-actions { display: flex; gap: 8px; }

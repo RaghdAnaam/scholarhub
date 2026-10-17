@@ -1,0 +1,400 @@
+/* ============================================================
+   ScholarHub — Global Styles
+   Galaxy Academy Dark Cosmic Theme
+   ============================================================ */
+
+/* ── CSS Custom Properties (Design Tokens) ─────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-primary:     #050510;
+  --bg-secondary:   #0c0c24;
+  --bg-card:        rgba(255, 255, 255, 0.04);
+  --bg-card-hover:  rgba(255, 255, 255, 0.07);
+  --bg-input:       rgba(255, 255, 255, 0.06);
+
+  /* Accent Colors */
+  --cyan:           #00d4ff;
+  --cyan-dim:       rgba(0, 212, 255, 0.12);
+  --cyan-glow:      0 0 22px rgba(0, 212, 255, 0.45);
+
+  --purple:         #8b5cf6;
+  --purple-dim:     rgba(139, 92, 246, 0.12);
+  --purple-glow:    0 0 22px rgba(139, 92, 246, 0.45);
+
+  --pink:           #ec4899;
+  --pink-dim:       rgba(236, 72, 153, 0.12);
+  --pink-glow:      0 0 22px rgba(236, 72, 153, 0.45);
+
+  --gold:           #f59e0b;
+  --gold-dim:       rgba(245, 158, 11, 0.12);
+
+  --green:          #10b981;
+  --green-dim:      rgba(16, 185, 129, 0.12);
+
+  /* Text */
+  --text-primary:   #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+
+  /* Borders */
+  --border:         rgba(255, 255, 255, 0.07);
+  --border-hover:   rgba(255, 255, 255, 0.15);
+  --border-cyan:    rgba(0, 212, 255, 0.25);
+
+  /* Layout */
+  --sidebar-width:  260px;
+
+  /* Border Radii */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  /* Typography */
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+
+  /* Transitions */
+  --t-fast:   all 0.15s ease;
+  --t-normal: all 0.25s ease;
+  --t-slow:   all 0.4s ease;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Nebula gradient backdrop — subtle glow clouds in the background */
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(139, 92, 246, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(0, 212, 255, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 0%,  rgba(236, 72, 153, 0.04) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; }
+img { max-width: 100%; }
+
+/* ── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+/* ── App Shell Layout ───────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* ── Page Wrapper ───────────────────────────────────────────── */
+.page {
+  padding: 36px 40px;
+  max-width: 1280px;
+  animation: fadeInUp 0.35s ease;
+}
+
+/* ── Page Header ────────────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-header-left h1 {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+
+.page-header-left p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ── Glass Card ─────────────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: var(--t-normal);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  transition: var(--t-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  color: #000;
+  font-weight: 600;
+}
+.btn-primary:hover {
+  box-shadow: var(--cyan-glow);
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #1adbff, #00aae6);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.btn-danger {
+  background: var(--pink-dim);
+  color: var(--pink);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+.btn-danger:hover {
+  background: rgba(236, 72, 153, 0.22);
+  box-shadow: var(--pink-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--bg-card);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Status Badges ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-active {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.badge-inactive {
+  background: rgba(100, 116, 139, 0.12);
+  color: var(--text-secondary);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+}
+.badge-graduated {
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* ── Avatar (initials circle) ───────────────────────────────── */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+  user-select: none;
+}
+.avatar-cyan   { background: var(--cyan-dim);   color: var(--cyan);   border: 1px solid rgba(0,212,255,0.3); }
+.avatar-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(139,92,246,0.3); }
+.avatar-pink   { background: var(--pink-dim);   color: var(--pink);   border: 1px solid rgba(236,72,153,0.3); }
+.avatar-gold   { background: var(--gold-dim);   color: var(--gold);   border: 1px solid rgba(245,158,11,0.3); }
+.avatar-green  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(16,185,129,0.3); }
+
+/* ── Loading Spinner ────────────────────────────────────────── */
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+/* ── Empty / Error States ───────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  gap: 12px;
+}
+.empty-state .empty-icon { font-size: 52px; opacity: 0.45; }
+.empty-state h3 { font-size: 18px; color: var(--text-primary); }
+.empty-state p  { font-size: 14px; }
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 12px;
+  color: var(--pink);
+  font-size: 14px;
+}
+
+/* ── Form Base ──────────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: var(--font-body);
+  transition: var(--t-normal);
+  width: 100%;
+}
+.form-input::placeholder { color: var(--text-muted); }
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+.form-select option { background: #14143a; color: var(--text-primary); }
+.form-textarea { resize: vertical; min-height: 88px; }
+
+.form-error {
+  font-size: 12px;
+  color: var(--pink);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Layout Utilities ───────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+/* ── Keyframe Animations ────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .main-content { margin-left: 0; }
+  .page { padding: 20px 16px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
